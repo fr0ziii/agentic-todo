@@ -2,7 +2,28 @@
 
 This project was created with [create-xmcp-app](https://github.com/basementstudio/xmcp).
 
-## Getting Started
+## Testing with Claude Code
+
+To test this MCP server with Claude Code:
+
+1.  **Start the Server**: Run the development server in your terminal:
+    ```bash
+    bun run dev
+    ```
+    This starts the server on `http://localhost:3001/mcp`.
+
+2.  **Configure Claude Code**:
+    Run the following command to add this server to your Claude Code configuration:
+    ```bash
+    claude mcp add agentic-todo http://localhost:3001/mcp
+    ```
+
+3.  **Verify Connection**:
+    Ask Claude to list the available tools to confirm the connection:
+    ```
+    /mcp list
+    ```
+
 
 First, run the development server:
 
