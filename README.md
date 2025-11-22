@@ -4,25 +4,29 @@ This project was created with [create-xmcp-app](https://github.com/basementstudi
 
 ## Testing with Claude Code
 
-To test this MCP server with Claude Code:
+To test this MCP server with Claude Code, you need to use STDIO transport since xmcp's HTTP transport doesn't support SSE (Server-Sent Events) which Claude Code requires.
 
-1.  **Start the Server**: Run the development server in your terminal:
+1.  **Build the Server**: First, build the project:
     ```bash
-    bun run dev
+    bun run build
     ```
-    This starts the server on `http://localhost:3001/mcp`.
 
 2.  **Configure Claude Code**:
     Run the following command to add this server to your Claude Code configuration:
     ```bash
-    claude mcp add agentic-todo http://localhost:3001/mcp
+    claude mcp add agentic-todo node /absolute/path/to/agentic-todo/dist/stdio.js
     ```
+    
+    Replace `/absolute/path/to/agentic-todo` with the actual absolute path to your project directory.
 
 3.  **Verify Connection**:
     Ask Claude to list the available tools to confirm the connection:
     ```
     /mcp list
     ```
+
+    > **Note**: If Claude Code prompts you to **Authenticate** or **Enable**, choose **Enable**. This server runs locally and does not require authentication.
+
 
 
 First, run the development server:

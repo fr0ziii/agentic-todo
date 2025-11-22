@@ -7,10 +7,11 @@ const config: XmcpConfig = {
     resources: "src/resources",
   },
   http: {
-    port: 3001,
+    port: 3002,
     host: "127.0.0.1",
     endpoint: "/mcp",
   },
+  stdio: true,
   bundler: (config) => {
     if (!config.externals) {
       config.externals = [];
