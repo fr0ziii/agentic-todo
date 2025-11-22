@@ -13,6 +13,7 @@ export interface Todo {
 }
 
 export class TodoEngine {
+    private static instance: TodoEngine | null = null;
     private db: Database.Database;
 
     constructor(dbPath: string = './data/todos.db') {
@@ -64,5 +65,25 @@ export class TodoEngine {
         created_at ASC
     `;
         return this.db.prepare(query).all() as Todo[];
+    }
+
+    /**
+     * Get singleton instance of TodoEngine.
+     * Ensures only one database connection is used across all tool calls.
+     */
+    static getInstance(dbPath: string = './data/todos.db'): TodoEngine {
+        if (!TodoEngine.instance) {
+            TodoEngine.instance = new TodoEngine(dbPath);
+        }
+        return TodoEngine.instance;
+    }
+
+    /**
+     * Close the database connection.
+     * Useful for graceful shutdown.
+     */
+    close(): void {
+        this.db.close();
+        TodoEngine.instance = null;
     }
 }

@@ -13,7 +13,7 @@ export const metadata = {
 };
 
 export default async function runScript({ script }: InferSchema<typeof schema>) {
-    const db = new TodoEngine();
+    const db = TodoEngine.getInstance();
     const logs: string[] = [];
 
     const context = {

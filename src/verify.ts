@@ -1,7 +1,7 @@
 
 import { fetch } from 'bun';
 
-const BASE_URL = 'http://localhost:3001/mcp';
+const BASE_URL = 'http://localhost:3002/mcp';
 
 async function testResources() {
     console.log('Testing Resources...');
